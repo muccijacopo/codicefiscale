@@ -3,22 +3,18 @@ import React, { Component } from "react";
 import "./Form.css";
 import { Input } from "./Input";
 
-import { takeFirstConsontants } from "../../utils/cf-utils";
-
 interface Props {
-  codiceFiscaleChange: (cf: string) => void;
+  formChange: (key: string, value: string) => void;
 }
 
 class Form extends Component<Props> {
-  onValueChanged(event: Event, name: string) {
+  onValueChanged(event: Event, key: string) {
     const value = (event.target as HTMLInputElement).value;
     this.setState({
-      [name]: value,
+      [key]: value,
     });
 
-    const filteredValue = takeFirstConsontants(value);
-    if (filteredValue) this.props.codiceFiscaleChange(filteredValue);
-    // this.props.codiceFiscaleChange(filtered);
+    this.props.formChange(key, value);
   }
 
   state = {

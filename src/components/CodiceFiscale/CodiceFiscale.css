@@ -1,4 +1,6 @@
 .CF {
-  font-size: 2rem;
+  font-size: 5rem;
+  font-weight: bold;
   text-align: center;
+  cursor: pointer;
 }
