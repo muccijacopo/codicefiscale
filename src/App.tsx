@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Form from "./components/Form/Form";
+import CodiceFiscale from "./components/CodiceFiscale/CodiceFiscale";
+
+class App extends Component {
+  state = {
+    codiceFiscale: "",
+  };
+
+  onCodiceFiscaleChange = (cf: string) => {
+    this.setState({
+      codiceFiscale: cf,
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Generatore Codice fiscale</h1>
+        <Form codiceFiscaleChange={this.onCodiceFiscaleChange} />
+        <CodiceFiscale codiceFiscale={this.state.codiceFiscale} />
+      </div>
+    );
+  }
 }
 
 export default App;
