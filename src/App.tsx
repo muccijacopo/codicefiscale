@@ -67,7 +67,6 @@ class App extends Component {
 
       const cfComplete: string =
         lastname + name + yearDate + monthDate + dayGender + city + controlCode;
-      console.log(cfComplete);
       controlCode = generateControlCode(cfComplete);
 
       return {

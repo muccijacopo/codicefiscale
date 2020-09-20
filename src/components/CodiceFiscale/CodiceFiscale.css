@@ -1,7 +1,16 @@
-.CF {
+input.cf {
+  background: transparent;
+  box-shadow: none;
+  border: none;
   width: 100%;
   font-size: 5rem;
   font-weight: bold;
   text-align: center;
   cursor: pointer;
+  color: #ffffff;
+}
+
+input.cf {
+  border: none;
+  outline: none;
 }

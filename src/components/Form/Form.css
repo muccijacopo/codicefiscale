@@ -3,13 +3,18 @@
   flex-direction: column;
   justify-content: center;
   width: 80%;
-  margin: 30px auto;
+  margin: 10% auto;
 }
 
 .Form .row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+  margin-bottom: 50px;
+}
+
+.Form .row.second {
+  flex-grow: 0.3;
 }
 
 .Input {
@@ -32,4 +37,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .Form .row {
+    flex-direction: column;
+  }
 }

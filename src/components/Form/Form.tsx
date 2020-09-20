@@ -30,10 +30,19 @@ class Form extends Component<Props> {
 
   handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
+    let { name, value } = target;
+    if (name === "gender") {
+      if (
+        value !== "" &&
+        value.toLowerCase() !== "m" &&
+        value.toLowerCase() !== "f"
+      )
+        value = "M";
+    }
     this.setState({
-      [target.name]: target.value,
+      [name]: value,
     });
-    this.props.formChange(target.name, target.value);
+    this.props.formChange(name, value);
   };
 
   render() {
@@ -68,7 +77,7 @@ class Form extends Component<Props> {
             valueChanged={this.handleChange}
           />
         </div>
-        <div className="row">
+        <div className="row second">
           <Input
             name="dayDate"
             placeholder="11"
@@ -89,14 +98,13 @@ class Form extends Component<Props> {
             value={yearDate}
             valueChanged={this.handleChange}
           />
+          <Input
+            name="city"
+            placeholder="Roma"
+            value={city}
+            valueChanged={this.handleChange}
+          />
         </div>
-
-        <Input
-          name="city"
-          placeholder="Roma"
-          value={city}
-          valueChanged={this.handleChange}
-        />
       </form>
     );
   }
