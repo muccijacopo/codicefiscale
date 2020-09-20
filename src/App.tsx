@@ -40,7 +40,7 @@ class App extends Component {
       controlCode,
     } = this.state.codiceFiscalePartials;
     return (
-      name + lastname + yearDate + monthDate + dayGender + city + controlCode
+      lastname + name + yearDate + monthDate + dayGender + city + controlCode
     );
   };
 
@@ -50,6 +50,30 @@ class App extends Component {
         codiceFiscalePartials: {
           ...state.codiceFiscalePartials,
           [key]: value,
+        },
+      };
+    });
+
+    this.setState((state: any, __) => {
+      const {
+        name,
+        lastname,
+        yearDate,
+        monthDate,
+        dayGender,
+        city,
+      } = state.codiceFiscalePartials;
+      let { controlCode } = state.codiceFiscalePartials;
+
+      const cfComplete: string =
+        lastname + name + yearDate + monthDate + dayGender + city + controlCode;
+      console.log(cfComplete);
+      controlCode = generateControlCode(cfComplete);
+
+      return {
+        codiceFiscalePartials: {
+          ...state.codiceFiscalePartials,
+          controlCode,
         },
       };
     });
@@ -75,25 +99,9 @@ class App extends Component {
       });
       key = "dayGender";
     }
-    if (key === "city") {
-      cfPartial = getCityCode(value as string);
-    }
+    if (key === "city") cfPartial = getCityCode(value as string);
 
     this.setPartial(key, cfPartial);
-
-    setTimeout(() => {
-      const cfComplete = this.joinPartials();
-      console.log(cfComplete);
-      const controlCode = generateControlCode(cfComplete);
-      this.setState((state: any, props) => {
-        return {
-          codiceFiscalePartials: {
-            ...state.codiceFiscalePartials,
-            controlCode,
-          },
-        };
-      });
-    }, 1000);
   };
 
   render() {

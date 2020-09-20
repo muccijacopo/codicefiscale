@@ -70,7 +70,6 @@ export const getCityCode = (city: string) => {
 };
 
 export const generateControlCode = (cf: string) => {
-  console.log(cf);
   if (cf.length < 15) return "";
   if (cf.length === 16) cf = cf.slice(0, -1);
   const cfAry: string[] = cf.split("");
