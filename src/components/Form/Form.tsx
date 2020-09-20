@@ -40,7 +40,7 @@ class Form extends Component<Props> {
         value = "M";
     }
     this.setState({
-      [name]: value,
+      [name]: value.toUpperCase(),
     });
     this.props.formChange(name, value);
   };
@@ -57,6 +57,7 @@ class Form extends Component<Props> {
     } = this.state;
     return (
       <form className="Form">
+        <h1>Calcolo Codice Fiscale Incrementale</h1>
         <div className="row">
           <Input
             name="name"

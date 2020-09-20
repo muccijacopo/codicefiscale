@@ -6,8 +6,13 @@
   margin: 10% auto;
 }
 
+.Form h1 {
+  font-size: 3.5rem;
+}
+
 .Form .row {
   display: flex;
+  flex-grow: 1 1 0.3;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 50px;

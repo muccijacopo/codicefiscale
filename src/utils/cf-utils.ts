@@ -40,10 +40,11 @@ export const monthToCode = (month: number) => {
 };
 
 export const takeFirstConsontants = (name: string) => {
-  let result = name.match(/[^a,e,i,o,u]/g)?.slice(0, 3);
+  console.log(name);
+  let result = name.match(/[^a,e,i,o,u]/gi)?.slice(0, 3);
   if (!result) return "";
   if (result?.length < 3) {
-    const aeiou = name.match(/[a,e,i,o,u]/g) as string[];
+    const aeiou = name.match(/[a,e,i,o,u]/gi) as string[];
     if (aeiou) {
       for (let i = 0; i <= 3; i++) {
         result.push(aeiou[i]);
