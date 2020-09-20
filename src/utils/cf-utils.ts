@@ -1,7 +1,7 @@
-import comuni from "../assets/comuni.json";
-import caratteriValoriPariMap from "../assets/carattere_valore_pari.json";
-import caratteriValoriDispariMap from "../assets/carattere_valore_dispari.json";
-import codiceControlloMap from "../assets/codice_di_controllo.json";
+import comuni from "../assets/media/comuni.json";
+import caratteriValoriPariMap from "../assets/media/carattere_valore_pari.json";
+import caratteriValoriDispariMap from "../assets/media/carattere_valore_dispari.json";
+import codiceControlloMap from "../assets/media/codice_di_controllo.json";
 
 export type Month =
   | "gennaio"
@@ -40,7 +40,6 @@ export const monthToCode = (month: number) => {
 };
 
 export const takeFirstConsontants = (name: string) => {
-  console.log(name);
   let result = name.match(/[^a,e,i,o,u]/gi)?.slice(0, 3);
   if (!result) return "";
   if (result?.length < 3) {
