@@ -1,4 +1,7 @@
 import comuni from "../assets/comuni.json";
+import caratteriValoriPariMap from "../assets/carattere_valore_pari.json";
+import caratteriValoriDispariMap from "../assets/carattere_valore_dispari.json";
+import codiceControlloMap from "../assets/codice_di_controllo.json";
 
 export type Month =
   | "gennaio"
@@ -55,7 +58,6 @@ export const takeFirstConsontants = (name: string) => {
 export const generateDayGenderPart = (day?: number | null, gender?: string) => {
   if (!day || day > 31) return "";
   if (gender?.toLowerCase() === "f") day = day + 40;
-  console.log(day);
   return day < 10 ? `0${day}` : `${day}`;
 };
 
@@ -63,7 +65,31 @@ export const getCityCode = (city: string) => {
   const result = comuni.find(
     (c) => c.comune.toLowerCase() == city.toLowerCase()
   );
-  console.log(result);
   if (result) return result.codice;
   return "";
+};
+
+export const generateControlCode = (cf: string) => {
+  const cfAry: string[] = cf.split("");
+  const evenCFCharacters = cfAry.filter((c, i) => i % 2 === 0);
+  const oddCFCharacters = cfAry.filter((c, i) => i % 2 !== 0);
+  const evenCFCharactersConverted = evenCFCharacters.map((char) => {
+    const find = +caratteriValoriPariMap.find(
+      (cv) => cv.Carattere.toLowerCase() === char.toLowerCase()
+    )?.Valore!;
+    return find;
+  });
+
+  const oddCFCharactersConverted = oddCFCharacters.map(
+    (char) =>
+      +caratteriValoriDispariMap.find(
+        (cv) => cv.Carattere.toLowerCase() === char.toLowerCase()
+      )?.Valore!
+  );
+
+  const sum =
+    evenCFCharactersConverted.reduce((acc, el) => acc + el) +
+    oddCFCharactersConverted.reduce((acc, el) => acc + el);
+
+  return codiceControlloMap.find((c) => +c.Resto == sum % 26)?.Lettera!;
 };

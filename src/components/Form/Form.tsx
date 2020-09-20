@@ -34,7 +34,6 @@ class Form extends Component<Props> {
       [target.name]: target.value,
     });
     this.props.formChange(target.name, target.value);
-    console.log(target.name);
   };
 
   render() {

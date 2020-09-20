@@ -10,6 +10,7 @@ import {
   Month,
   generateDayGenderPart,
   getCityCode,
+  generateControlCode,
 } from "./utils/cf-utils";
 
 class App extends Component {
@@ -23,7 +24,23 @@ class App extends Component {
       yearDate: "",
       dayGender: "",
       city: "",
+      controlCode: "",
     },
+  };
+
+  joinPartials = () => {
+    const {
+      name,
+      lastname,
+      yearDate,
+      monthDate,
+      dayGender,
+      city,
+      controlCode,
+    } = this.state.codiceFiscalePartials;
+    return (
+      name + lastname + yearDate + monthDate + dayGender + city + controlCode
+    );
   };
 
   setPartial(key: string, value: string) {
@@ -33,10 +50,20 @@ class App extends Component {
         [key]: value,
       },
     });
+
+    const cfComplete = this.joinPartials();
+    if (cfComplete.length >= 15) {
+      const controlCode = generateControlCode(cfComplete);
+      this.setState({
+        codiceFiscalePartials: {
+          ...this.state.codiceFiscalePartials,
+          controlCode,
+        },
+      });
+    }
   }
 
   onFormChange = (key: string, value: string | number) => {
-    console.log(key);
     let cfPartial: string = "";
     if (key === "name" || key === "lastname")
       cfPartial = takeFirstConsontants(value as string);
@@ -64,16 +91,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      name,
-      lastname,
-      yearDate,
-      monthDate,
-      dayGender,
-      city,
-    } = this.state.codiceFiscalePartials;
-    const codiceFiscaleComplete =
-      name + lastname + yearDate + monthDate + dayGender + city;
+    const codiceFiscaleComplete = this.joinPartials();
     return (
       <div className="App">
         {/* <h1>Generatore Codice fiscale</h1> */}
