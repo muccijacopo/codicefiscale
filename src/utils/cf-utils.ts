@@ -70,16 +70,19 @@ export const getCityCode = (city: string) => {
 };
 
 export const generateControlCode = (cf: string) => {
+  console.log(cf);
+  if (cf.length < 15) return "";
+  if (cf.length === 16) cf = cf.slice(0, -1);
   const cfAry: string[] = cf.split("");
   const evenCFCharacters = cfAry.filter((c, i) => i % 2 === 0);
   const oddCFCharacters = cfAry.filter((c, i) => i % 2 !== 0);
+
   const evenCFCharactersConverted = evenCFCharacters.map((char) => {
     const find = +caratteriValoriPariMap.find(
       (cv) => cv.Carattere.toLowerCase() === char.toLowerCase()
     )?.Valore!;
     return find;
   });
-
   const oddCFCharactersConverted = oddCFCharacters.map(
     (char) =>
       +caratteriValoriDispariMap.find(

@@ -12,6 +12,7 @@ import {
   getCityCode,
   generateControlCode,
 } from "./utils/cf-utils";
+import { Console } from "console";
 
 class App extends Component {
   state = {
@@ -44,23 +45,14 @@ class App extends Component {
   };
 
   setPartial(key: string, value: string) {
-    this.setState({
-      codiceFiscalePartials: {
-        ...this.state.codiceFiscalePartials,
-        [key]: value,
-      },
-    });
-
-    const cfComplete = this.joinPartials();
-    if (cfComplete.length >= 15) {
-      const controlCode = generateControlCode(cfComplete);
-      this.setState({
+    this.setState((state: any, props) => {
+      return {
         codiceFiscalePartials: {
-          ...this.state.codiceFiscalePartials,
-          controlCode,
+          ...state.codiceFiscalePartials,
+          [key]: value,
         },
-      });
-    }
+      };
+    });
   }
 
   onFormChange = (key: string, value: string | number) => {
@@ -88,13 +80,26 @@ class App extends Component {
     }
 
     this.setPartial(key, cfPartial);
+
+    setTimeout(() => {
+      const cfComplete = this.joinPartials();
+      console.log(cfComplete);
+      const controlCode = generateControlCode(cfComplete);
+      this.setState((state: any, props) => {
+        return {
+          codiceFiscalePartials: {
+            ...state.codiceFiscalePartials,
+            controlCode,
+          },
+        };
+      });
+    }, 1000);
   };
 
   render() {
     const codiceFiscaleComplete = this.joinPartials();
     return (
       <div className="App">
-        {/* <h1>Generatore Codice fiscale</h1> */}
         <Form formChange={this.onFormChange} />
         <CodiceFiscale codiceFiscale={codiceFiscaleComplete} />
       </div>
