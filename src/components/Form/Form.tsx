@@ -3,53 +3,100 @@ import React, { Component } from "react";
 import "./Form.css";
 import { Input } from "./Input";
 
+import { getValidFormat } from "./form-utils";
+
 interface Props {
   formChange: (key: string, value: string) => void;
 }
 
+export interface IDate {
+  day: number | null;
+  month: number | null;
+  year: number | null;
+}
+
+const genderValues = ["M", "F"];
+
 class Form extends Component<Props> {
-  onValueChanged(event: Event, key: string) {
-    const value = (event.target as HTMLInputElement).value;
-    this.setState({
-      [key]: value,
-    });
-
-    this.props.formChange(key, value);
-  }
-
   state = {
-    name: "Nome",
-    lastname: "Cognome",
-    gender: "Maschio",
-    city: "Roma",
+    name: "",
+    lastname: "",
+    gender: "",
+    city: "",
+    dayDate: "",
+    monthDate: "",
+    yearDate: "",
+  };
 
-    codiceFiscale: "",
+  handleChange = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    this.setState({
+      [target.name]: target.value,
+    });
+    this.props.formChange(target.name, target.value);
+    console.log(target.name);
   };
 
   render() {
+    const {
+      name,
+      lastname,
+      dayDate,
+      monthDate,
+      yearDate,
+      gender,
+      city,
+    } = this.state;
     return (
       <form className="Form">
         <div className="row">
           <Input
             name="name"
-            value={this.state.name}
-            valueChanged={(e) => this.onValueChanged(e, "name")}
+            value={name}
+            valueChanged={this.handleChange}
+            placeholder="Mario"
           />
           <Input
             name="lastname"
-            value={this.state.lastname}
-            valueChanged={(e) => this.onValueChanged(e, "lastname")}
+            placeholder="Rossi"
+            value={lastname}
+            valueChanged={this.handleChange}
+          />
+          <Input
+            name="gender"
+            placeholder="M"
+            value={gender}
+            valueChanged={this.handleChange}
           />
         </div>
-        <Input
-          name="gender"
-          value={this.state.gender}
-          valueChanged={(e) => this.onValueChanged(e, "gender")}
-        />
+        <div className="row">
+          <Input
+            name="dayDate"
+            placeholder="11"
+            value={dayDate}
+            valueChanged={this.handleChange}
+          />
+          <Input
+            name="monthDate"
+            placeholder="09"
+            type="number"
+            value={monthDate}
+            valueChanged={this.handleChange}
+          />
+          <Input
+            name="yearDate"
+            placeholder="2001"
+            type="number"
+            value={yearDate}
+            valueChanged={this.handleChange}
+          />
+        </div>
+
         <Input
           name="city"
-          value={this.state.city}
-          valueChanged={(e) => this.onValueChanged(e, "city")}
+          placeholder="Roma"
+          value={city}
+          valueChanged={this.handleChange}
         />
       </form>
     );

@@ -1,40 +1,79 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Form from "./components/Form/Form";
+import Form, { IDate } from "./components/Form/Form";
 import CodiceFiscale from "./components/CodiceFiscale/CodiceFiscale";
 
-import { takeFirstConsontants } from "./utils/cf-utils";
+import {
+  takeFirstConsontants,
+  monthToCode,
+  Month,
+  generateDayGenderPart,
+  getCityCode,
+} from "./utils/cf-utils";
 
 class App extends Component {
   state = {
+    gender: "",
+    day: null,
     codiceFiscalePartials: {
       name: "",
       lastname: "",
+      monthDate: "",
+      yearDate: "",
+      dayGender: "",
+      city: "",
     },
   };
 
-  onFormChange = (key: string, value: string) => {
+  setPartial(key: string, value: string) {
+    this.setState({
+      codiceFiscalePartials: {
+        ...this.state.codiceFiscalePartials,
+        [key]: value,
+      },
+    });
+  }
+
+  onFormChange = (key: string, value: string | number) => {
+    console.log(key);
     let cfPartial: string = "";
-    if (key === "name" || key === "lastname") {
-      cfPartial = takeFirstConsontants(value);
-    }
-
-    if (cfPartial) {
+    if (key === "name" || key === "lastname")
+      cfPartial = takeFirstConsontants(value as string);
+    if (key === "yearDate") cfPartial = value.toString().slice(-2);
+    if (key === "monthDate") cfPartial = monthToCode(value as number);
+    if (key === "dayDate") {
+      cfPartial = generateDayGenderPart(+value, this.state.gender);
       this.setState({
-        codiceFiscalePartials: {
-          ...this.state.codiceFiscalePartials,
-          [key]: cfPartial,
-        },
+        day: +value,
       });
+      key = "dayGender";
+    }
+    if (key === "gender") {
+      cfPartial = generateDayGenderPart(this.state.day, value as string);
+      this.setState({
+        gender: value,
+      });
+      key = "dayGender";
+    }
+    if (key === "city") {
+      cfPartial = getCityCode(value as string);
     }
 
-    console.log(this.state);
+    this.setPartial(key, cfPartial);
   };
 
   render() {
-    const { name, lastname } = this.state.codiceFiscalePartials;
-    const codiceFiscaleComplete = name + lastname;
+    const {
+      name,
+      lastname,
+      yearDate,
+      monthDate,
+      dayGender,
+      city,
+    } = this.state.codiceFiscalePartials;
+    const codiceFiscaleComplete =
+      name + lastname + yearDate + monthDate + dayGender + city;
     return (
       <div className="App">
         {/* <h1>Generatore Codice fiscale</h1> */}
