@@ -12,22 +12,15 @@
 
 .Form .row {
   display: flex;
-  flex-grow: 1 1 0.3;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 50px;
 }
 
-.Form .row.second {
-  flex-grow: 0.3;
-}
-
 .Input {
   width: 100%;
-  font-size: 2rem;
-  padding: 0.5rem;
+  font-size: 2.5rem;
   color: white;
-  margin: 0 20px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -44,8 +37,12 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 576px) {
   .Form .row {
     flex-direction: column;
+    margin-bottom: 0;
+  }
+  .Form .row input {
+    margin-bottom: 10px;
   }
 }

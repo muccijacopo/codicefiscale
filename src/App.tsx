@@ -27,6 +27,7 @@ class App extends Component {
       city: "",
       controlCode: "",
     },
+    isCfReady: false,
   };
 
   joinPartials = () => {
@@ -63,17 +64,18 @@ class App extends Component {
         dayGender,
         city,
       } = state.codiceFiscalePartials;
-      let { controlCode } = state.codiceFiscalePartials;
 
-      const cfComplete: string =
-        lastname + name + yearDate + monthDate + dayGender + city + controlCode;
-      controlCode = generateControlCode(cfComplete);
+      let cfPartial: string =
+        lastname + name + yearDate + monthDate + dayGender + city;
+      const controlCode = generateControlCode(cfPartial);
+      const cfComplete = cfPartial + controlCode;
 
       return {
         codiceFiscalePartials: {
           ...state.codiceFiscalePartials,
           controlCode,
         },
+        isCfReady: cfComplete.length === 16,
       };
     });
   }
@@ -107,8 +109,14 @@ class App extends Component {
     const codiceFiscaleComplete = this.joinPartials();
     return (
       <div className="App">
+        <header>
+          <h1>Codice Fiscale Incrementale</h1>
+        </header>
         <Form formChange={this.onFormChange} />
-        <CodiceFiscale codiceFiscale={codiceFiscaleComplete} />
+        <CodiceFiscale
+          codiceFiscale={codiceFiscaleComplete}
+          isReady={this.state.isCfReady}
+        />
       </div>
     );
   }

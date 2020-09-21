@@ -30,17 +30,10 @@ class Form extends Component<Props> {
 
   handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    let { name, value } = target;
-    if (name === "gender") {
-      if (
-        value !== "" &&
-        value.toLowerCase() !== "m" &&
-        value.toLowerCase() !== "f"
-      )
-        value = "M";
-    }
+    const { name, value } = target;
+    const formattedValue = getValidFormat(name, value);
     this.setState({
-      [name]: value.toUpperCase(),
+      [name]: formattedValue,
     });
     this.props.formChange(name, value);
   };
@@ -57,7 +50,6 @@ class Form extends Component<Props> {
     } = this.state;
     return (
       <form className="Form">
-        <h1>Codice Fiscale Incrementale</h1>
         <div className="row">
           <Input
             name="name"

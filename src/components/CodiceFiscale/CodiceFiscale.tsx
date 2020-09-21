@@ -2,7 +2,11 @@ import React from "react";
 
 import "./CodiceFiscale.css";
 
-const CodiceFiscale: React.FC<{ codiceFiscale: string }> = (props) => {
+const cfColors = ["#fff", "#32b843"];
+
+const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (
+  props
+) => {
   const onClick = (e: any) => {
     const target = e.target as HTMLInputElement;
     target.select();
@@ -10,10 +14,11 @@ const CodiceFiscale: React.FC<{ codiceFiscale: string }> = (props) => {
   };
   return (
     <input
-      className="cf"
+      className="codice-fiscale"
       type="text"
       onClick={onClick}
       value={props.codiceFiscale.toUpperCase()}
+      style={props.isReady ? { color: cfColors[1] } : { color: cfColors[0] }}
     />
   );
 };
