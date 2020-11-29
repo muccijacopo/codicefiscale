@@ -17,7 +17,7 @@ const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (
       className="codice-fiscale"
       type="text"
       onClick={onClick}
-      value={props.codiceFiscale.toUpperCase()}
+      defaultValue={props.codiceFiscale.toUpperCase()}
       style={props.isReady ? { color: cfColors[1] } : { color: cfColors[0] }}
     />
   );

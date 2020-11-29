@@ -12,7 +12,6 @@ import {
   getCityCode,
   generateControlCode,
 } from "./utils/cf-utils";
-import { Console } from "console";
 
 class App extends Component {
   state = {
