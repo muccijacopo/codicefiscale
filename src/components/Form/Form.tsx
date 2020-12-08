@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import "./Form.css";
+import { getValidFormat } from "../../utils/form";
+import { CodiceFiscaleForm } from "../../models/codicefiscale.model";
 import { Input } from "./Input";
-
-import { getValidFormat } from "./form-utils";
+import "./Form.css";
 
 interface Props {
-  formChange: (key: string, value: string) => void;
+  onFormChanges: (formValues: CodiceFiscaleForm) => void;
 }
 
 export interface IDate {
@@ -15,10 +15,8 @@ export interface IDate {
   year: number | null;
 }
 
-const genderValues = ["M", "F"];
-
-class Form extends Component<Props> {
-  state = {
+const Form = ({ onFormChanges }: Props) => {
+  const [form, setForm] = useState<CodiceFiscaleForm>({
     name: "",
     lastname: "",
     gender: "",
@@ -26,81 +24,73 @@ class Form extends Component<Props> {
     dayDate: "",
     monthDate: "",
     yearDate: "",
-  };
+  });
 
-  handleChange = (e: Event) => {
+  const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
     const { name, value } = target;
     const formattedValue = getValidFormat(name, value);
-    this.setState({
+    const updatedForm = {
+      ...form,
       [name]: formattedValue,
-    });
-    this.props.formChange(name, value);
+    };
+    setForm(updatedForm);
+    onFormChanges(updatedForm);
   };
 
-  render() {
-    const {
-      name,
-      lastname,
-      dayDate,
-      monthDate,
-      yearDate,
-      gender,
-      city,
-    } = this.state;
-    return (
-      <form className="Form">
-        <div className="row">
-          <Input
-            name="name"
-            value={name}
-            valueChanged={this.handleChange}
-            placeholder="Mario"
-          />
-          <Input
-            name="lastname"
-            placeholder="Rossi"
-            value={lastname}
-            valueChanged={this.handleChange}
-          />
-          <Input
-            name="gender"
-            placeholder="M"
-            value={gender}
-            valueChanged={this.handleChange}
-          />
-        </div>
-        <div className="row second">
-          <Input
-            name="dayDate"
-            placeholder="11"
-            value={dayDate}
-            valueChanged={this.handleChange}
-          />
-          <Input
-            name="monthDate"
-            placeholder="09"
-            type="number"
-            value={monthDate}
-            valueChanged={this.handleChange}
-          />
-          <Input
-            name="yearDate"
-            placeholder="2001"
-            type="number"
-            value={yearDate}
-            valueChanged={this.handleChange}
-          />
-          <Input
-            name="city"
-            placeholder="Roma"
-            value={city}
-            valueChanged={this.handleChange}
-          />
-        </div>
-      </form>
-    );
-  }
-}
+  const { name, lastname, gender, dayDate, monthDate, yearDate, city } = form;
+  return (
+    <form className="Form">
+      <div className="row">
+        <Input
+          name="name"
+          value={name}
+          valueChanged={handleChange}
+          placeholder="Mario"
+        />
+        <Input
+          name="lastname"
+          placeholder="Rossi"
+          value={lastname}
+          valueChanged={handleChange}
+        />
+        <Input
+          name="gender"
+          placeholder="M"
+          value={gender}
+          valueChanged={handleChange}
+        />
+      </div>
+      <div className="row second">
+        <Input
+          name="dayDate"
+          placeholder="11"
+          value={dayDate}
+          valueChanged={handleChange}
+        />
+        <Input
+          name="monthDate"
+          placeholder="09"
+          type="number"
+          value={monthDate}
+          valueChanged={handleChange}
+        />
+        <Input
+          name="yearDate"
+          placeholder="2001"
+          type="number"
+          value={yearDate}
+          valueChanged={handleChange}
+        />
+        <Input
+          name="city"
+          placeholder="Roma"
+          value={city}
+          valueChanged={handleChange}
+        />
+      </div>
+    </form>
+  );
+};
 
 export default Form;

@@ -1,7 +1,7 @@
-import comuni from "../assets/media/comuni.json";
-import caratteriValoriPariMap from "../assets/media/carattere_valore_pari.json";
-import caratteriValoriDispariMap from "../assets/media/carattere_valore_dispari.json";
-import codiceControlloMap from "../assets/media/codice_di_controllo.json";
+import comuni from "../data/comuni.json";
+import caratteriValoriPariMap from "../data/carattere_valore_pari.json";
+import caratteriValoriDispariMap from "../data/carattere_valore_dispari.json";
+import codiceControlloMap from "../data/codice_di_controllo.json";
 
 export type Month =
   | "gennaio"
@@ -16,21 +16,6 @@ export type Month =
   | "ottobre"
   | "novembre"
   | "dicembre";
-
-// const MONTH_CODE = {
-//   gennaio: "A",
-//   febbraio: "B",
-//   marzo: "C",
-//   aprile: "D",
-//   maggio: "E",
-//   giugno: "H",
-//   luglio: "L",
-//   agosto: "M",
-//   settembre: "P",
-//   ottobre: "R",
-//   novembre: "S",
-//   dicembre: "T",
-// };
 
 const MONTH_CODE = ["A", "B", "C", "D", "E", "H", "L", "M", "P", "R", "S", "T"];
 
@@ -55,7 +40,7 @@ export const takeFirstConsontants = (name: string) => {
   return result.join("");
 };
 
-export const generateDayGenderPart = (day?: number | null, gender?: string) => {
+export const generateDayGenderPart = (day: number, gender: string) => {
   if (!day || day > 31) return "";
   if (gender?.toLowerCase() === "f") day = day + 40;
   return day < 10 ? `0${day}` : `${day}`;

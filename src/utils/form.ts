@@ -1,8 +1,4 @@
-export const getValidFormat = (
-  key: string,
-  value: string,
-  values?: string[]
-) => {
+export const getValidFormat = (key: string, value: string) => {
   if (value === "") return "";
   if (key === "gender") {
     if (
