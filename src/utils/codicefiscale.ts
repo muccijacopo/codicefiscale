@@ -24,20 +24,57 @@ export const monthToCode = (month: number) => {
   return MONTH_CODE[month - 1];
 };
 
-export const takeFirstConsontants = (name: string) => {
-  let result = name.match(/[^a,e,i,o,u]/gi)?.slice(0, 3);
-  if (!result) return "";
-  if (result?.length < 3) {
-    const aeiou = name.match(/[a,e,i,o,u]/gi) as string[];
-    if (aeiou) {
-      for (let i = 0; i <= 3; i++) {
-        result.push(aeiou[i]);
-        if (result.length === 3) break;
-        // else result.push("x");
-      }
-    }
+export const generateFirstNamePartial = (name: string) => {
+  const consontants = name.match(/[^a,e,i,o,u, ]/gi) || [];
+  const vowels = name.match(/[a,e,i,o,u]/gi) || [];
+
+  if (!consontants.length && !vowels.length) return "";
+
+  console.log(consontants, vowels);
+
+  const consontantsLength = consontants.length;
+  const vowelsLength = vowels.length;
+
+  if (consontantsLength > 3) {
+    return consontants[0] + consontants[2] + consontants[3];
   }
-  return result.join("");
+  if (consontantsLength > 2) {
+    return consontants[0] + consontants[1] + consontants[2];
+  }
+
+  const remainingSpace = 3 - consontantsLength;
+  console.log("remaing", remainingSpace);
+  const extraCharactersLength = remainingSpace - vowelsLength;
+
+  let partialAry = consontants.concat(vowels.slice(0, remainingSpace));
+  if (extraCharactersLength > 0) {
+    const extraCharacters = Array(extraCharactersLength).fill("X") as string[];
+    partialAry = partialAry.concat(extraCharacters);
+  }
+  return partialAry.join("");
+};
+
+export const generateLastNamePartial = (name: string) => {
+  const consontants = name.match(/[^a,e,i,o,u, ]/gi) || [];
+  const vowels = name.match(/[a,e,i,o,u]/gi) || [];
+  if (!consontants.length && !vowels.length) return "";
+
+  const consontantsLength = consontants.length;
+  const vowelsLength = vowels.length;
+
+  if (consontantsLength > 2) {
+    return consontants.slice(0, 3).join("");
+  }
+
+  const remainingSpace = 3 - consontantsLength;
+  const extraCharactersLength = remainingSpace - vowelsLength;
+
+  let partialAry = consontants.concat(vowels.slice(0, remainingSpace));
+  if (extraCharactersLength > 0) {
+    const extraCharacters = Array(extraCharactersLength).fill("X") as string[];
+    partialAry = partialAry.concat(extraCharacters);
+  }
+  return partialAry.join("");
 };
 
 export const generateDayGenderPart = (day: number, gender: string) => {

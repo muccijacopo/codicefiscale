@@ -5,11 +5,12 @@ import Form, { IDate } from "./components/Form/Form";
 import CodiceFiscale from "./components/CodiceFiscale/CodiceFiscale";
 
 import {
-  takeFirstConsontants,
   monthToCode,
   generateDayGenderPart,
   getCityCode,
   generateControlCode,
+  generateFirstNamePartial,
+  generateLastNamePartial,
 } from "./utils/codicefiscale";
 import {
   CodiceFiscaleForm,
@@ -47,8 +48,8 @@ const App = () => {
 
   const updatePartials = (formValues: CodiceFiscaleForm) => {
     const codiceFiscalePartialsUpdated: CodiceFiscalePartials = {
-      name: takeFirstConsontants(formValues.name),
-      lastname: takeFirstConsontants(formValues.lastname),
+      name: generateFirstNamePartial(formValues.name),
+      lastname: generateLastNamePartial(formValues.lastname),
       yearDate: formValues.yearDate.toString().slice(-2),
       monthDate: monthToCode(+formValues.monthDate),
       dayGender: generateDayGenderPart(+formValues.dayDate, formValues.gender),
@@ -72,7 +73,6 @@ const App = () => {
   const codiceFiscaleComplete = joinPartials(codiceFiscalePartials);
   const isCodiceFiscaleReady = codiceFiscaleComplete.length === 16;
 
-  console.log("render");
   return (
     <div className="App">
       <header>
