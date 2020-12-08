@@ -1,4 +1,4 @@
-# CF-Generator 
+# CodiceFiscale 
 
 Permette di generare qualsiasi codice fiscale in maniera incrementale.
 
