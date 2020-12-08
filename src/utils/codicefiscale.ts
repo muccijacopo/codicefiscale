@@ -27,10 +27,7 @@ export const monthToCode = (month: number) => {
 export const generateFirstNamePartial = (name: string) => {
   const consontants = name.match(/[^a,e,i,o,u, ]/gi) || [];
   const vowels = name.match(/[a,e,i,o,u]/gi) || [];
-
   if (!consontants.length && !vowels.length) return "";
-
-  console.log(consontants, vowels);
 
   const consontantsLength = consontants.length;
   const vowelsLength = vowels.length;
@@ -43,7 +40,6 @@ export const generateFirstNamePartial = (name: string) => {
   }
 
   const remainingSpace = 3 - consontantsLength;
-  console.log("remaing", remainingSpace);
   const extraCharactersLength = remainingSpace - vowelsLength;
 
   let partialAry = consontants.concat(vowels.slice(0, remainingSpace));
