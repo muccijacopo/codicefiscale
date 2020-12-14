@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { getValidFormat } from "../../utils/form";
 import { CodiceFiscaleForm } from "../../models/codicefiscale.model";
 import { Input } from "./Input";
-import "./Form.css";
+
+import "./Form.scss";
 
 interface Props {
   onFormChanges: (formValues: CodiceFiscaleForm) => void;
@@ -47,26 +48,30 @@ const Form = ({ onFormChanges }: Props) => {
           value={name}
           valueChanged={handleChange}
           placeholder="Mario"
+          style={{ width: "45% " }}
         />
         <Input
           name="lastname"
           placeholder="Rossi"
           value={lastname}
           valueChanged={handleChange}
+          style={{ width: "45% " }}
         />
         <Input
           name="gender"
           placeholder="M"
           value={gender}
           valueChanged={handleChange}
+          style={{ width: "10% " }}
         />
       </div>
-      <div className="row second">
+      <div className="row">
         <Input
           name="dayDate"
           placeholder="11"
           value={dayDate}
           valueChanged={handleChange}
+          style={{ width: "15%" }}
         />
         <Input
           name="monthDate"
@@ -74,6 +79,7 @@ const Form = ({ onFormChanges }: Props) => {
           type="number"
           value={monthDate}
           valueChanged={handleChange}
+          style={{ width: "15%" }}
         />
         <Input
           name="yearDate"
@@ -81,12 +87,14 @@ const Form = ({ onFormChanges }: Props) => {
           type="number"
           value={yearDate}
           valueChanged={handleChange}
+          style={{ width: "30%" }}
         />
         <Input
           name="city"
           placeholder="Roma"
           value={city}
           valueChanged={handleChange}
+          style={{ width: "40% " }}
         />
       </div>
     </form>

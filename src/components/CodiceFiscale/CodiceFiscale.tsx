@@ -19,6 +19,7 @@ const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (
       onClick={onClick}
       defaultValue={props.codiceFiscale.toUpperCase()}
       style={props.isReady ? { color: cfColors[1] } : { color: cfColors[0] }}
+      readOnly
     />
   );
 };

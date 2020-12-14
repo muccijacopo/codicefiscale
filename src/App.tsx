@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./App.css";
 
-import Form, { IDate } from "./components/Form/Form";
+import Form from "./components/Form/Form";
 import CodiceFiscale from "./components/CodiceFiscale/CodiceFiscale";
+import Footer from "./components/Footer/Footer";
 
 import {
   monthToCode,
@@ -16,6 +16,9 @@ import {
   CodiceFiscaleForm,
   CodiceFiscalePartials,
 } from "./models/codicefiscale.model";
+import Header from "./components/Header/Header";
+
+import "./App.scss";
 
 const App = () => {
   const [
@@ -74,16 +77,17 @@ const App = () => {
   const isCodiceFiscaleReady = codiceFiscaleComplete.length === 16;
 
   return (
-    <div className="App">
-      <header>
-        <h1>Generatore Codice Fiscale</h1>
-      </header>
-      <Form onFormChanges={onFormChanges} />
-      <CodiceFiscale
-        codiceFiscale={codiceFiscaleComplete}
-        isReady={isCodiceFiscaleReady}
-      />
-    </div>
+    <React.Fragment>
+      <Header />
+      <div className="container">
+        <Form onFormChanges={onFormChanges} />
+        <CodiceFiscale
+          codiceFiscale={codiceFiscaleComplete}
+          isReady={isCodiceFiscaleReady}
+        />
+      </div>
+      <Footer />
+    </React.Fragment>
   );
 };
 

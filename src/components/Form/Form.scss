@@ -12,7 +12,6 @@
 
 .Form .row {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   margin-bottom: 50px;
 }
@@ -23,12 +22,13 @@
   margin-right: 30px;
   color: white;
   background: transparent;
-  border: none;
   box-shadow: none;
+  border-bottom: 1px solid transparent;
+  transition: border-width 0.5 linear;
 }
 
 .Input:focus {
-  border: none;
+  border-bottom: 1px solid #ffffff;
   outline: none;
 }
 
@@ -46,5 +46,6 @@ input::-webkit-inner-spin-button {
   .Form .row input {
     margin: 0;
     margin-bottom: 10px;
+    width: 100% !important;
   }
 }
