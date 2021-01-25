@@ -1,12 +1,21 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+}
+
 .input {
+  width: 100%;
   background: transparent;
   box-shadow: none;
   border: none;
   outline: none;
-  width: 100%;
-  font-size: 8vw;
-  font-weight: bold;
+  font-size: 4.5rem;
   text-align: center;
+  // font-size: 4.5rem;
+  font-weight: bold;
   cursor: pointer;
   color: #ffffff;
   &.is_ready {
@@ -14,19 +23,19 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 850px) {
   .input {
-    font-size: 2.2rem;
+    font-size: 8vw !important;
   }
 }
-
-.container {
-  position: relative;
-  cursor: pointer;
-}
+// @media (max-width: 750px) {
+//   .input {
+//     font-size: 3.5rem;
+//   }
+// }
 
 .icon {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 0;
+  right: 0;
 }
