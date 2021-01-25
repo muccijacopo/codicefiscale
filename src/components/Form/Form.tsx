@@ -56,20 +56,29 @@ const Form = ({ onFormChanges }: Props) => {
       </div>
       <div className={classes.row}>
         <label>Data di nascita</label>
-        <Input name="dayDate" placeholder="11" value={dayDate} valueChanged={handleChange} />
+        <Input
+          name="dayDate"
+          placeholder="11"
+          value={dayDate}
+          valueChanged={handleChange}
+          style={{ width: '100px' }}
+        />
         <Input
           name="monthDate"
           placeholder="09"
           type="number"
           value={monthDate}
           valueChanged={handleChange}
+          style={{ width: '100px' }}
         />
+
         <Input
           name="yearDate"
           placeholder="2001"
           type="number"
           value={yearDate}
           valueChanged={handleChange}
+          style={{ width: '150px' }}
         />
       </div>
       <div className={classes.row}>

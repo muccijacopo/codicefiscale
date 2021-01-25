@@ -11,13 +11,16 @@ const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (pr
     document.execCommand('copy');
   };
   return (
-    <input
-      className={`${classes.input} ${props.isReady ? classes.is_ready : ''}`}
-      type="text"
-      onClick={onClick}
-      defaultValue={props.codiceFiscale.toUpperCase()}
-      readOnly
-    />
+    <div className={classes.container}>
+      <input
+        className={`${classes.input} ${props.isReady ? classes.is_ready : ''}`}
+        type="text"
+        onClick={onClick}
+        defaultValue={props.codiceFiscale.toUpperCase()}
+        readOnly
+      />
+      {props.isReady && <i className={classes.icon}>📋</i>}
+    </div>
   );
 };
 
