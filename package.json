@@ -16,15 +16,11 @@
     "react-scripts": "3.4.3",
     "typescript": "^3.7.5"
   },
-  "devDependencies": {
-    "firebase-tools": "^8.18.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build && firebase deploy"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
