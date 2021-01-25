@@ -1,0 +1,42 @@
+@import 'src/styles/variables';
+
+header {
+  background: #027db1;
+  color: $white;
+  text-align: left;
+  padding: 1rem;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  .flags {
+    // border: 1px solid black;
+    // height: 40px;
+    // width: 100px;
+    display: flex;
+    img {
+      // position: absolute;
+      width: 50px;
+      margin-right: 10px;
+      // &:nth-of-type(1) {
+      //   bottom: 0;
+      //   left: 0;
+      // }
+      // &:nth-of-type(2) {
+      //   right: 0;
+      //   top: 0;
+      // }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+}

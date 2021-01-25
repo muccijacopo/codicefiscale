@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+
+import classes from './Form.module.scss';
 
 interface Props {
   name: string;
@@ -10,18 +12,11 @@ interface Props {
   valueChanged: (event: any) => void;
 }
 
-export const Input: React.FC<Props> = ({
-  type,
-  name,
-  placeholder,
-  value,
-  valueChanged,
-  style,
-}) => {
-  const inputType = type || "text";
+export function Input({ type, name, placeholder, value, valueChanged, style }: Props) {
+  const inputType = type || 'text';
   return (
     <input
-      className="Input"
+      className={classes.input}
       style={style}
       name={name}
       placeholder={placeholder}
@@ -31,4 +26,4 @@ export const Input: React.FC<Props> = ({
       autoComplete="off"
     ></input>
   );
-};
+}

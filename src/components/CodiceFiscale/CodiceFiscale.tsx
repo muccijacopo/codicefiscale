@@ -1,24 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import "./CodiceFiscale.css";
+import classes from './CodiceFiscale.module.scss';
 
-const cfColors = ["#fff", "#32b843"];
+const cfColors = ['#fff', '#32b843'];
 
-const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (
-  props
-) => {
+const CodiceFiscale: React.FC<{ codiceFiscale: string; isReady: boolean }> = (props) => {
   const onClick = (e: any) => {
     const target = e.target as HTMLInputElement;
     target.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
   };
   return (
     <input
-      className="codice-fiscale"
+      className={`${classes.input} ${props.isReady ? classes.is_ready : ''}`}
       type="text"
       onClick={onClick}
       defaultValue={props.codiceFiscale.toUpperCase()}
-      style={props.isReady ? { color: cfColors[1] } : { color: cfColors[0] }}
       readOnly
     />
   );

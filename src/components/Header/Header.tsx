@@ -1,11 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import "./Header.scss";
+import classes from './Header.module.scss';
 
 const Header = () => {
   return (
-    <header>
-      <h1>Generatore Codice Fiscale</h1>
+    <header className={classes.header}>
+      <h1>CodiceFiscale</h1>
+      <div className={classes.flags}>
+        <img src="/assets/images/EU.png"></img>
+        <img src="/assets/images/IT.png"></img>
+      </div>
     </header>
   );
 };

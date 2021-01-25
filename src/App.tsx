@@ -86,7 +86,7 @@ const App = () => {
           isReady={isCodiceFiscaleReady}
         />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };

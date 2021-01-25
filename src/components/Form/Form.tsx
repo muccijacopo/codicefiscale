@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { getValidFormat } from "../../utils/form";
-import { CodiceFiscaleForm } from "../../models/codicefiscale.model";
-import { Input } from "./Input";
+import { getValidFormat } from '../../utils/form';
+import { CodiceFiscaleForm } from '../../models/codicefiscale.model';
+import { Input } from './Input';
 
-import "./Form.scss";
+import classes from './Form.module.scss';
 
 interface Props {
   onFormChanges: (formValues: CodiceFiscaleForm) => void;
@@ -18,13 +18,13 @@ export interface IDate {
 
 const Form = ({ onFormChanges }: Props) => {
   const [form, setForm] = useState<CodiceFiscaleForm>({
-    name: "",
-    lastname: "",
-    gender: "",
-    city: "",
-    dayDate: "",
-    monthDate: "",
-    yearDate: "",
+    name: '',
+    lastname: '',
+    gender: '',
+    city: '',
+    dayDate: '',
+    monthDate: '',
+    yearDate: '',
   });
 
   const handleChange = (e: Event) => {
@@ -41,45 +41,28 @@ const Form = ({ onFormChanges }: Props) => {
 
   const { name, lastname, gender, dayDate, monthDate, yearDate, city } = form;
   return (
-    <form className="Form">
-      <div className="row">
-        <Input
-          name="name"
-          value={name}
-          valueChanged={handleChange}
-          placeholder="Mario"
-          style={{ width: "45% " }}
-        />
-        <Input
-          name="lastname"
-          placeholder="Rossi"
-          value={lastname}
-          valueChanged={handleChange}
-          style={{ width: "45% " }}
-        />
-        <Input
-          name="gender"
-          placeholder="M"
-          value={gender}
-          valueChanged={handleChange}
-          style={{ width: "10% " }}
-        />
+    <form className={classes.form}>
+      <div className={classes.row}>
+        <label>Cognome</label>
+        <Input name="lastname" placeholder="Rossi" value={lastname} valueChanged={handleChange} />
       </div>
-      <div className="row">
-        <Input
-          name="dayDate"
-          placeholder="11"
-          value={dayDate}
-          valueChanged={handleChange}
-          style={{ width: "15%" }}
-        />
+      <div className={classes.row}>
+        <label>Nome</label>
+        <Input name="name" value={name} valueChanged={handleChange} placeholder="Mario" />
+      </div>
+      <div className={classes.row}>
+        <label>Sesso</label>
+        <Input name="gender" placeholder="M" value={gender} valueChanged={handleChange} />
+      </div>
+      <div className={classes.row}>
+        <label>Data di nascita</label>
+        <Input name="dayDate" placeholder="11" value={dayDate} valueChanged={handleChange} />
         <Input
           name="monthDate"
           placeholder="09"
           type="number"
           value={monthDate}
           valueChanged={handleChange}
-          style={{ width: "15%" }}
         />
         <Input
           name="yearDate"
@@ -87,15 +70,11 @@ const Form = ({ onFormChanges }: Props) => {
           type="number"
           value={yearDate}
           valueChanged={handleChange}
-          style={{ width: "30%" }}
         />
-        <Input
-          name="city"
-          placeholder="Roma"
-          value={city}
-          valueChanged={handleChange}
-          style={{ width: "40% " }}
-        />
+      </div>
+      <div className={classes.row}>
+        <label>Città</label>
+        <Input name="city" placeholder="Roma" value={city} valueChanged={handleChange} />
       </div>
     </form>
   );
