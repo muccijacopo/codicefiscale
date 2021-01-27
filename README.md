@@ -1,6 +1,9 @@
 # CodiceFiscale 
-
-CodiceFiscale is a simple React App, improved with Progressive Web App features (like offline use), with a modern UI to create "Codice Fiscale" codes.
+CodiceFiscale is a simple web app to generate italian fiscal code.
+## Features
+- Generate italian fiscal code incrementally
+- Works offline
+- Installable on mobile & desktop
 
 ![CodiceFiscale app preview](https://user-images.githubusercontent.com/7196622/105766844-89e34380-5f5a-11eb-9ead-67d1187189a1.png)
 
