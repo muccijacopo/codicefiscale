@@ -2,8 +2,8 @@
 CodiceFiscale is a simple web app to generate italian fiscal code.
 ## Features
 - Generate italian fiscal code incrementally
-- Works offline
-- Installable on mobile & desktop
+- Works offline (PWA)
+- Installable on mobile & desktop (PWA)
 
 ![CodiceFiscale app preview](https://user-images.githubusercontent.com/7196622/105766844-89e34380-5f5a-11eb-9ead-67d1187189a1.png)
 
