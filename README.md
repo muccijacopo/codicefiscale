@@ -1,5 +1,6 @@
 # CodiceFiscale 
 CodiceFiscale is a simple web app to generate italian fiscal code.
+<https://codicefiscale.surge.sh/>
 ## Features
 - Generate italian fiscal code incrementally
 - Works offline (PWA)
